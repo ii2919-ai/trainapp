@@ -4,18 +4,35 @@ import java.util.*;
 public class trainapp {
     public static void main(String[] args) {
 
-        // Array of bogie type names
-        String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "General", "Luxury"};
+        Scanner sc = new Scanner(System.in);
 
-        // Display original array
-        System.out.println("Original Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        // Array of bogie IDs (unsorted)
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        // Sorting using Arrays.sort()
-        Arrays.sort(bogieNames);
+        // Display available bogies
+        System.out.println("Available Bogie IDs:");
+        System.out.println(Arrays.toString(bogieIds));
 
-        // Display sorted array
-        System.out.println("\nSorted Bogie Names (Alphabetical Order):");
-        System.out.println(Arrays.toString(bogieNames));
+        // Input search key
+        System.out.print("\nEnter Bogie ID to search: ");
+        String searchKey = sc.nextLine();
+
+        // Linear Search logic
+        boolean found = false;
+
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (bogieIds[i].equals(searchKey)) {
+                found = true;
+                System.out.println("Bogie found at position: " + i);
+                break; // early termination
+            }
+        }
+
+        // If not found
+        if (!found) {
+            System.out.println("Bogie ID not found in the train.");
+        }
+
+        sc.close();
     }
 }
