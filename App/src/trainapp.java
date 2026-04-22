@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class trainapp {
 
@@ -7,7 +7,23 @@ public class trainapp {
 
         // Welcome message
         System.out.println("=== Train Consist Management App ===");
+ feature/UC3-tracking
+        // Create HashSet for unique bogie IDs
+        Set<String> bogieIDs = new HashSet<>();
 
+        // Add bogie IDs (including duplicates)
+        bogieIDs.add("BG101");
+        bogieIDs.add("BG102");
+        bogieIDs.add("BG103");
+        bogieIDs.add("BG101"); // duplicate
+        bogieIDs.add("BG102"); // duplicate
+
+        // Display unique bogie IDs
+        System.out.println("\nBogie IDs after insertion (duplicates ignored):");
+        System.out.println(bogieIDs);
+
+        // Program continues
+        System.out.println("\nSystem ensures all bogie IDs are unique.");
         // Create ArrayList for passenger bogies
         List<String> passengerBogies = new ArrayList<>();
 
@@ -36,6 +52,6 @@ public class trainapp {
         System.out.println("\nFinal passenger bogie list:");
         System.out.println(passengerBogies);
 
-        System.out.println("\nSystem ready to manage train consist...");
+        System.out.println("\nSystem ready to manage train consist..."); dev
     }
 }
