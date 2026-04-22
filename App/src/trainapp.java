@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 // Bogie class
 class Bogie {
@@ -24,16 +25,21 @@ public class trainapp {
         // Creating list of bogies
         List<Bogie> bogieList = new ArrayList<>();
 
-        // Adding passenger bogies
         bogieList.add(new Bogie("Sleeper", 72));
         bogieList.add(new Bogie("AC Chair", 56));
         bogieList.add(new Bogie("First Class", 24));
+        bogieList.add(new Bogie("Sleeper", 80));
 
-        // Sorting using Comparator (by capacity)
-        bogieList.sort(Comparator.comparingInt(b -> b.capacity));
+        // Stream pipeline: map + reduce
+        int totalSeats = bogieList.stream()
+                .map(b -> b.capacity)      // extract capacity
+                .reduce(0, Integer::sum);  // sum all values
 
-        // Display sorted bogies
-        System.out.println("Bogies sorted by capacity:");
+        // Display total seating capacity
+        System.out.println("Total Seating Capacity of Train: " + totalSeats);
+
+        // Display original list (to verify unchanged)
+        System.out.println("\nOriginal Bogie List:");
         for (Bogie b : bogieList) {
             b.display();
         }
