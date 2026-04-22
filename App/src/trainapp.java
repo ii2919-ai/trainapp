@@ -6,29 +6,38 @@ public class trainapp {
 
         Scanner sc = new Scanner(System.in);
 
-        // Array of bogie IDs (unsorted)
+        // Sorted array of bogie IDs (IMPORTANT: must be sorted)
         String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        // Display available bogies
-        System.out.println("Available Bogie IDs:");
+        // Display bogie IDs
+        System.out.println("Available Bogie IDs (Sorted):");
         System.out.println(Arrays.toString(bogieIds));
 
         // Input search key
         System.out.print("\nEnter Bogie ID to search: ");
-        String searchKey = sc.nextLine();
+        String key = sc.nextLine();
 
-        // Linear Search logic
+        // Binary Search logic
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
 
-        for (int i = 0; i < bogieIds.length; i++) {
-            if (bogieIds[i].equals(searchKey)) {
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int result = key.compareTo(bogieIds[mid]);
+
+            if (result == 0) {
+                System.out.println("Bogie found at position: " + mid);
                 found = true;
-                System.out.println("Bogie found at position: " + i);
-                break; // early termination
+                break;
+            } else if (result < 0) {
+                high = mid - 1; // search left half
+            } else {
+                low = mid + 1;  // search right half
             }
         }
 
-        // If not found
         if (!found) {
             System.out.println("Bogie ID not found in the train.");
         }
